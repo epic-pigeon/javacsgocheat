@@ -76,11 +76,12 @@ object Xena : NativeKeyListener {
 		pluginManager.add(GlowESPPlugin())
 		pluginManager.add(ForceAimPlugin())
 		//pluginManager.add(SkinChangerPlugin())
-		//pluginManager.add(SpinBotPlugin())
+		pluginManager.add(SpinBotPlugin())
 		pluginManager.add(NoFlashPlugin())
 		pluginManager.add(AimAssistPlugin())
 		pluginManager.add(BunnyHopPlugin())
-		
+		pluginManager.add(ShowWeapons())
+
 		println("We're all set. Welcome to the new Xena platform!")
 		println("Use numpad or ALT+nums to toggle corresponding plugins.")
 		

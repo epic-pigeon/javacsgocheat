@@ -42,11 +42,11 @@ public abstract class Plugin {
 			toggle();
 			Xena.INSTANCE.getOverlay().repaint();
 			e.consume();
-		}, GlobalKeyboard.ALT, KeyEvent.VK_NUMPAD0 + uid, KeyEvent.VK_0 + uid));
+		}, GlobalKeyboard.ALT, KeyEvent.VK_NUMPAD0 + uid + 1, KeyEvent.VK_0 + uid + 1));
 	}
 	
 	public void toggle() {
-		enabled = !enabled;
+		if (enabled) disable(); else enable();
 	}
 	
 	public boolean canPulse() {
@@ -77,7 +77,7 @@ public abstract class Plugin {
 	
 	@Override
 	public String toString() {
-		return uid + ": " + getClass().getSimpleName();
+		return (uid + 1) + ": " + getClass().getSimpleName();
 	}
 	
 }
