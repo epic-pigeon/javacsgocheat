@@ -283,7 +283,8 @@ enum class EntityType(val weapon: Boolean = false, val grenade: Boolean = false)
 	RocketTrail,
 	SmokeTrail,
 	SporeExplosion,
-	SporeTrail;
+	SporeTrail,
+	UNKNOWN;
 	
 	open var id: Long = ordinal - 1L
 	
@@ -300,21 +301,21 @@ enum class EntityType(val weapon: Boolean = false, val grenade: Boolean = false)
 			try {
 				val vt = process().readUnsignedInt(address + 0x8)
 				if (vt <= 0) {
-					return null
+					return UNKNOWN
 				}
 				val fn = process().readUnsignedInt(vt + 0x8)
 				if (fn <= 0) {
-					return null
+					return UNKNOWN
 				}
 				val cls = process().readUnsignedInt(fn + 0x1)
 				if (cls <= 0) {
-					return null
+					return UNKNOWN
 				}
 				val classId = process().readUnsignedInt(cls + 20)
 				return EntityType.byId(classId)
 			} catch (e: Exception) {
 				//e.printStackTrace()
-				return null
+				return UNKNOWN
 			}
 		}
 		

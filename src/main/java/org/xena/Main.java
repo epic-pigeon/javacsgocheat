@@ -16,7 +16,9 @@
 
 package org.xena;
 
+import org.xena.gui.Overlay;
 import org.xena.offsets.OffsetManager;
+import org.xena.plugin.official.ShowWeaponsWindow;
 
 import java.lang.management.ManagementFactory;
 

@@ -72,15 +72,15 @@ object Xena : NativeKeyListener {
 	@JvmStatic
 	@Throws(InterruptedException::class)
 	fun run(cycleMS: Int) {
-		//pluginManager.add(RadarPlugin()); //This may cause bans be careful
+		//pluginManager.add(RadarPlugin()) //This may cause bans be careful
 		pluginManager.add(GlowESPPlugin())
 		pluginManager.add(ForceAimPlugin())
 		//pluginManager.add(SkinChangerPlugin())
-		pluginManager.add(SpinBotPlugin())
+		//pluginManager.add(SpinBotPlugin())
 		pluginManager.add(NoFlashPlugin())
 		pluginManager.add(AimAssistPlugin())
 		pluginManager.add(BunnyHopPlugin())
-		pluginManager.add(ShowWeapons())
+		//pluginManager.add(ShowWeapons())
 
 		println("We're all set. Welcome to the new Xena platform!")
 		println("Use numpad or ALT+nums to toggle corresponding plugins.")

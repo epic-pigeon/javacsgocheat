@@ -53,8 +53,8 @@ class GlowESPPlugin : Plugin() {
 	
 	private fun getColor(entity: GameEntity): IntArray {
 		return when {
-			entity.team == 2 -> ESP_T
 			entity.isBombCarrier -> ESP_BOMB_CARRY
+			entity.team == 2 -> ESP_T
 			else -> ESP_CT
 		}
 	}

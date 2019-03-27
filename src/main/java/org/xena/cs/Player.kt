@@ -25,9 +25,16 @@ import org.xena.offsets.offsets.NetVarOffsets.iItemDefinitionIndex
 open class Player : GameEntity() {
 	
 	val weaponIds = Array(8) { LongArray(2) }
+
+	var name = "hz"
 	
 	override fun update() {
+		//val id = process().readUnsignedInt(address() + 0x64)
+		//val radarBase = process().readUnsignedInt(clientModule().address() + 0x04EC039C)
+		//val radar = process().readUnsignedInt(radarBase + 0x54)
+		//name = process().readString(radar + ((0x1E0 * (id+1)) + 0x24), 40)
 		super.update()
+
 		isBombCarrier = false
 		
 		for (i in weaponIds.indices) {

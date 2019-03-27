@@ -37,7 +37,7 @@ import java.awt.event.KeyEvent
 class SkinChangerPlugin : Plugin() {
 	
 	private val DEFAULT_SKIN_SEED = 0
-	private val DEFAULT_STATTRAK = -1 // -1 for no StatTrak, 0+ for StatTrak amount
+	private val DEFAULT_STATTRAK = 100 // -1 for no StatTrak, 0+ for StatTrak amount
 	private val DEFAULT_WEAR = 0.0001f // lower = less wear, higher = more wear
 	private val DEFAULT_QUALITY = 1
 	
@@ -46,7 +46,7 @@ class SkinChangerPlugin : Plugin() {
 			val weapon = Weapons.byID(weaponData[0].toInt())
 			if (weapon != null && weapon.customSkin) {
 				for (i in 0..4) {
-					appySkin(weaponData[1], weapon.skin)
+					applySkin(weaponData[1], weapon.skin)
 				}
 			}
 		}
@@ -56,7 +56,7 @@ class SkinChangerPlugin : Plugin() {
 		}
 	}
 	
-	private fun appySkin(weaponAddress: Long, skinID: Int, skinSeed: Int = DEFAULT_SKIN_SEED, statTrak: Int = DEFAULT_STATTRAK, wear: Float = DEFAULT_WEAR, quality: Int = DEFAULT_QUALITY) {
+	private fun applySkin(weaponAddress: Long, skinID: Int, skinSeed: Int = DEFAULT_SKIN_SEED, statTrak: Int = DEFAULT_STATTRAK, wear: Float = DEFAULT_WEAR, quality: Int = DEFAULT_QUALITY) {
 		process.writeInt(weaponAddress + iItemIDHigh, 1)
 		process.writeInt(weaponAddress + nFallbackPaintKit, skinID)
 		process.writeInt(weaponAddress + nFallbackSeed, skinSeed)

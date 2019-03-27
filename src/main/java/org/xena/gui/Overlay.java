@@ -27,7 +27,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public final class Overlay extends JWindow {
-	
+
 	private static final int WIDTH = 200;
 	private static int HEIGHT = 400;
 	

@@ -33,7 +33,7 @@ public abstract class Plugin {
 	
 	private long sleep;
 	
-	private boolean enabled = true;
+	private boolean enabled = false;
 	
 	public Plugin() {
 		this.uid = pluginUid++;
@@ -43,6 +43,8 @@ public abstract class Plugin {
 			Xena.INSTANCE.getOverlay().repaint();
 			e.consume();
 		}, GlobalKeyboard.ALT, KeyEvent.VK_NUMPAD0 + uid + 1, KeyEvent.VK_0 + uid + 1));
+
+		//enable();
 	}
 	
 	public void toggle() {
@@ -58,13 +60,21 @@ public abstract class Plugin {
 	}
 	
 	public void enable() {
+		onEnable();
 		enabled = true;
 	}
+
+	public void onEnable() {}
 	
 	public void disable() {
+		onDisable();
 		enabled = false;
 	}
-	
+
+	public void onDisable() {
+
+	}
+
 	public boolean isEnabled() {
 		return enabled;
 	}

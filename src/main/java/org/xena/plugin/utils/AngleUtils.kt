@@ -73,7 +73,11 @@ class AngleUtils(private val plugin: Plugin, private val smoothing: Float, priva
 	
 	fun canShoot(me: Me, target: GameEntity): Boolean {
 		val weaponID = me.activeWeapon.weaponID.toInt()
-		
+
+		Weapons.values().forEach {
+			if (it.id == weaponID && !it.canShoot) return false
+		}
+
 		if (weaponID == Weapons.KNIFE_T.id || weaponID == Weapons.KNIFE_CT.id) {
 			return false
 		}

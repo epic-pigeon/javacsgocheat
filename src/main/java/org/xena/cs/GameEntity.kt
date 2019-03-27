@@ -17,9 +17,11 @@
 package org.xena.cs
 
 import org.xena.Settings
+import org.xena.clientModule
 import org.xena.offsets.OffsetManager.engineModule
 import org.xena.offsets.OffsetManager.process
 import org.xena.offsets.offsets.ClientOffsets.bDormant
+import org.xena.offsets.offsets.ClientOffsets.dwEntityList
 import org.xena.offsets.offsets.EngineOffsets.dwClientState
 import org.xena.offsets.offsets.EngineOffsets.dwViewAngles
 import org.xena.offsets.offsets.NetVarOffsets.bMoveType
@@ -27,11 +29,13 @@ import org.xena.offsets.offsets.NetVarOffsets.bSpottedByMask
 import org.xena.offsets.offsets.NetVarOffsets.dwBoneMatrix
 import org.xena.offsets.offsets.NetVarOffsets.dwIndex
 import org.xena.offsets.offsets.NetVarOffsets.dwModel
+import org.xena.offsets.offsets.NetVarOffsets.iItemDefinitionIndex
 import org.xena.offsets.offsets.NetVarOffsets.lifeState
 import org.xena.offsets.offsets.NetVarOffsets.vecOrigin
 import org.xena.offsets.offsets.NetVarOffsets.vecPunch
 import org.xena.offsets.offsets.NetVarOffsets.vecVelocity
 import org.xena.offsets.offsets.NetVarOffsets.vecViewOffset
+import org.xena.plugin.official.RadarPlugin
 import org.xena.plugin.utils.Vector
 import java.lang.Math.abs
 
@@ -71,8 +75,14 @@ open class GameEntity : GameObject() {
 	
 	var isBombCarrier: Boolean = false
 		protected set
+
+	var id: Long = -1
+
+	var weaponID: Long = -1
 	
 	open fun update() {
+		id = process().readUnsignedInt(address() + 0x64)
+
 		model = process().readUnsignedInt(address() + dwModel)
 		boneMatrix = process().readUnsignedInt(address() + dwBoneMatrix)
 		isRunning = process().readBoolean(address() + bMoveType)
@@ -120,6 +130,10 @@ open class GameEntity : GameObject() {
 		val result = spottedByMask and (1 shl meID).toLong()
 		
 		isSpotted = result != 0L
+
+		if (type!!.weapon) {
+			weaponID = process().readUnsignedInt(address() + iItemDefinitionIndex)
+		}
 	}
 	
 	fun isSpottedd(): Boolean {
@@ -131,7 +145,7 @@ open class GameEntity : GameObject() {
 		println(result)
 		isSpotted = result != 0L
 		
-		return isSpotted as Boolean
+		return isSpotted
 	}
 	
 	fun distanceTo(vector: Vector, target: Vector) = abs(vector.x - target.x) + abs(vector.y - target.y) + abs(vector.z - target.z)
