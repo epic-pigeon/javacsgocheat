@@ -35,17 +35,17 @@ public final class ForceAimPlugin extends Plugin {
 	private final Vector aim = new Vector();
 	private final Vector lastaim = new Vector();
 	private Player lastTarget = null;
-	//private boolean isOn = false;
-	//private boolean keyWasPressed = false;
+	private boolean isOn = false;
+	private boolean keyWasPressed = false;
 	
 	@Override
 	public void pulse(ClientState clientState, Me me, Indexer<GameEntity> players) {
-		/*if (NativeKeyUtils.isKeyDown(Settings.FORCE_AIM_TOGGLE)) {
+		if (NativeKeyUtils.isKeyDown(Settings.FORCE_AIM_TOGGLE)) {
 			if (!keyWasPressed) isOn = !isOn;
 			keyWasPressed = true;
-		} else keyWasPressed = false;*/
+		} else keyWasPressed = false;
 
-		if (true && !me.getCursorEnabled()) {
+		if (isOn && !me.getCursorEnabled()) {
 			Player target = me.getClosestTarget(aimHelper, Settings.FORCE_AIM_FOV);
 			if (lastTarget != null && target == null) {
 				if (!lastTarget.isDead() && lastTarget.isSpotted()) {
