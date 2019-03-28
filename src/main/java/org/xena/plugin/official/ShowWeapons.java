@@ -43,7 +43,7 @@ public final class ShowWeapons extends Plugin {
         if (window == null) {
             window = ShowWeaponsWindow.open(args);
         } else window.repaint(args);
-        sleep(1000);
+        sleep(100);
     }
 
     public void onEnable() {

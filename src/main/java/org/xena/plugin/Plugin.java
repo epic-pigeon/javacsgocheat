@@ -24,16 +24,17 @@ import org.xena.cs.Me;
 import org.xena.keylistener.GlobalKeyboard;
 import org.xena.keylistener.NativeKeyCombination;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public abstract class Plugin {
 	
 	private static int pluginUid;
-	private final int uid;
+	protected final int uid;
 	
 	private long sleep;
 	
-	private boolean enabled = false;
+	protected boolean enabled = false;
 	
 	public Plugin() {
 		this.uid = pluginUid++;
@@ -42,9 +43,9 @@ public abstract class Plugin {
 			toggle();
 			Xena.INSTANCE.getOverlay().repaint();
 			e.consume();
-		}, GlobalKeyboard.ALT, KeyEvent.VK_NUMPAD0 + uid + 1, KeyEvent.VK_0 + uid + 1));
+		}, GlobalKeyboard.ALT, KeyEvent.VK_NUMPAD1 + uid, KeyEvent.VK_1 + uid));
 
-		//enable();
+		enable();
 	}
 	
 	public void toggle() {
@@ -89,5 +90,8 @@ public abstract class Plugin {
 	public String toString() {
 		return (uid + 1) + ": " + getClass().getSimpleName();
 	}
-	
+
+	public Color getColor() {
+		return enabled ? Color.GREEN : Color.RED;
+	}
 }

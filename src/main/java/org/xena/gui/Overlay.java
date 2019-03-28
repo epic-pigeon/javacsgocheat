@@ -120,7 +120,8 @@ public final class Overlay extends JWindow {
 		for (int i = 0; i < plugins.length; i++) {
 			JLabel label = plugins[i];
 			Plugin plugin = xena.getPluginManager().get(i);
-			label.setForeground(plugin.isEnabled() ? Color.GREEN : Color.RED);
+			label.setForeground(plugin.getColor());
+			label.setText(plugin.toString());
 		}
 		status.setText(getStatus());
 	}

@@ -24,7 +24,7 @@ import org.xena.offsets.offsets.NetVarOffsets.iItemDefinitionIndex
 
 open class Player : GameEntity() {
 	
-	val weaponIds = Array(8) { LongArray(2) }
+	var weaponIds = Array(8) { LongArray(2) }
 
 	var name = "hz"
 	
@@ -36,7 +36,9 @@ open class Player : GameEntity() {
 		super.update()
 
 		isBombCarrier = false
-		
+
+		weaponIds = Array(8) { LongArray(2) }
+
 		for (i in weaponIds.indices) {
 			val currentWeaponIndex = process().readUnsignedInt(address() + hMyWeapons.toLong() + ((i - 1) * 0x04).toLong()) and 0xFFF
 			val weaponAddress = clientModule().readUnsignedInt(dwEntityList + (currentWeaponIndex - 1) * 0x10)

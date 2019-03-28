@@ -54,7 +54,8 @@ val clientModule = OffsetManager.clientModule()
 object Xena : NativeKeyListener {
 	
 	const val CYCLE_TIME = 8
-	
+
+	@JvmStatic
 	val pluginManager = PluginManager()
 	
 	var gameMode = GameTypes.UNKNOWN
@@ -64,7 +65,7 @@ object Xena : NativeKeyListener {
 	var lastCycle = 0L
 	
 	var lastRefresh = 0L
-	
+
 	val overlay: Overlay by lazy { Overlay.open(this) }
 	
 	val keylistener: GlobalKeyboard by lazy { GlobalKeyboard.register(this) }
@@ -78,9 +79,9 @@ object Xena : NativeKeyListener {
 		//pluginManager.add(SkinChangerPlugin())
 		//pluginManager.add(SpinBotPlugin())
 		pluginManager.add(NoFlashPlugin())
-		pluginManager.add(AimAssistPlugin())
-		pluginManager.add(BunnyHopPlugin())
-		//pluginManager.add(ShowWeapons())
+		//pluginManager.add(AimAssistPlugin())
+		//pluginManager.add(BunnyHopPlugin())
+		pluginManager.add(HeadFollowPlugin())
 
 		println("We're all set. Welcome to the new Xena platform!")
 		println("Use numpad or ALT+nums to toggle corresponding plugins.")
@@ -143,6 +144,7 @@ object Xena : NativeKeyListener {
 				if (sleep > 0) {
 					Thread.sleep(sleep)
 				}
+				overlay.repaint()
 			} catch (t: Throwable) {
 				t.printStackTrace()
 				Thread.currentThread().interrupt()

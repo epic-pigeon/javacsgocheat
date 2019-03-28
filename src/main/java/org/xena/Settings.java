@@ -26,7 +26,9 @@ public final class Settings {
 	public static final float FORCE_AIM_STRENGTH = 100f;
 	public static final int FORCE_AIM_TOGGLE = NativeKeyUtils.LEFT_ALT;
 	public static final int FORCE_AIM_FOV = 190;
-	
+
+
+
 	/**
 	 * Spin Bot assist settings
 	 */

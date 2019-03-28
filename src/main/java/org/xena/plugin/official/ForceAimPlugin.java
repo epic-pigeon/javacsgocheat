@@ -28,6 +28,8 @@ import org.xena.plugin.PluginManifest;
 import org.xena.plugin.utils.AngleUtils;
 import org.xena.plugin.utils.Vector;
 
+import java.awt.*;
+
 @PluginManifest(name = "Aim Assist", description = "Helps you to stay on target.")
 public final class ForceAimPlugin extends Plugin {
 	
@@ -73,5 +75,12 @@ public final class ForceAimPlugin extends Plugin {
 			lastTarget = null;
 		}
 		sleep(10);
+	}
+
+	@Override
+	public Color getColor() {
+		if (enabled) {
+			if (isOn) return Color.YELLOW; else return Color.GREEN;
+		} else return Color.RED;
 	}
 }
